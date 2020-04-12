@@ -4,14 +4,14 @@ var app = express()
 var http = require('http')
 var socketIO = require('socket.io')
 
-/*
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
-*/
+
 
 var server = http.Server(app);
-server.listen(5555);
+server.listen(5000);
 
 var io = socketIO(server);
 
@@ -21,10 +21,10 @@ io.on('connection', function (socket) {
 
     socket.on('message.send', function (data) {
         console.log(data)
-        //io.emit('message.sent', data);
+        io.emit('message.sent', data);
 
         
-        io.to(socket.id).emit('message.sent',data);
+        //io.to(socket.id).emit('message.sent',data);
     });
 
 
